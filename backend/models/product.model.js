@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const productSchema = mongoose.schema(
+const productSchema = new mongoose.Schema( // Corrected the 'Schema' capitalization
   {
     name: {
       type: String,
@@ -16,10 +16,10 @@ const productSchema = mongoose.schema(
     },
   },
   {
-    timestamps: true, //createdat,updatedAt
+    timestamps: true, // createdAt, updatedAt
   }
 );
 
-const product = mongoose.model('Product', productSchema);
+const Product = mongoose.model('Product', productSchema); // Capitalized 'Product' for consistency
 
-export default product;
+export default Product;
