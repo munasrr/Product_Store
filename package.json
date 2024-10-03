@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "node backend/server.js"
+    "dev": "nodemon backend/server.js"
   },
   "type": "module",
   "keywords": [],
