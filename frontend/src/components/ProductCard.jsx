@@ -145,6 +145,7 @@ const ProductCard = ({ product }) => {
               Update
             </Button>
             <Button variant="ghost" onClick={onClose}>
+              Cancel
             </Button>
           </ModalFooter>
         </ModalContent>

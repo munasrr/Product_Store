@@ -18,7 +18,7 @@ const HomePage = () => {
           fontWeight={'bold'}
           textTransform={'uppercase'}
           textAlign={'center'}
-          bgGradient={'linear(to-r,cyan.400,blue.500)'}
+          bgGradient={'linear(to-r,cyan.400,blue.600)'}
         >
           Current Products
         </Text>
