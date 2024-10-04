@@ -1,34 +1,63 @@
-import {Box,Image, Heading,Text,HStack,IconButton, useColorModeValue, useToast,} from '@chakra-ui/react';
-import {DeleteIcon,EditIcon} from '@chakra-ui/icons'
-import { useProductStore } from '../../store/product';
+/* eslint-disable react/prop-types */
+import { DeleteIcon, EditIcon } from '@chakra-ui/icons';
+import {Box,Button,Heading,HStack,IconButton,Image,Input,Modal,ModalBody,ModalCloseButton,ModalContent,ModalFooter,ModalHeader,ModalOverlay,
+  Text,useColorModeValue,useDisclosure,useToast,VStack,} from '@chakra-ui/react';
+import { useProductStore } from '../store/product';
+import { useState } from 'react';
 
-const ProductCard = ({product}) => {
+const ProductCard = ({ product }) => {
+  const [updatedProduct, setUpdatedProduct] = useState(product);
+
   const textColor = useColorModeValue('gray.600', 'gray.200');
   const bg = useColorModeValue('white', 'gray.800');
-  const {deleteProduct} =useProductStore()
-  const toast = useToast()
 
-  const handleDeleteProduct = async (pid) =>{
-   const {success,message} = await deleteProduct(pid)
-   if(!success){
-    toast({
-    title:"Error",
-    description:message,
-    status:'error',
-    duration:3000,
-    isClosable:true,
-    })
-   
-   }else {
-    toast({
-    title:"Success",
-    description:message,
-    status:'success',
-    duration:3000,
-    isClosable:true,
-    })
-   }
-  }
+  const { deleteProduct, updateProduct } = useProductStore();
+  const toast = useToast();
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const handleDeleteProduct = async (pid) => {
+    const { success, message } = await deleteProduct(pid);
+    if (!success) {
+      toast({
+        title: 'Error',
+        description: message,
+        status: 'error',
+        duration: 3000,
+        isClosable: true,
+      });
+    } else {
+      toast({
+        title: 'Success',
+        description: message,
+        status: 'success',
+        duration: 3000,
+        isClosable: true,
+      });
+    }
+  };
+
+  const handleUpdateProduct = async (pid, updatedProduct) => {
+    const { success, message } = await updateProduct(pid, updatedProduct);
+    onClose();
+    if (!success) {
+      toast({
+        title: 'Error',
+        description: message,
+        status: 'error',
+        duration: 3000,
+        isClosable: true,
+      });
+    } else {
+      toast({
+        title: 'Success',
+        description: 'Product updated successfully',
+        status: 'success',
+        duration: 3000,
+        isClosable: true,
+      });
+    }
+  };
+
   return (
     <Box
       shadow="lg"
@@ -54,8 +83,9 @@ const ProductCard = ({product}) => {
         <Text fontWeight="bold" fontSize="xl" color={textColor} mb={4}>
           ${product.price}
         </Text>
+
         <HStack spacing={2}>
-          <IconButton icon={<EditIcon />} colorScheme="blue" />
+          <IconButton icon={<EditIcon />} onClick={onOpen} colorScheme="blue" />
           <IconButton
             icon={<DeleteIcon />}
             onClick={() => handleDeleteProduct(product._id)}
@@ -63,8 +93,12 @@ const ProductCard = ({product}) => {
           />
         </HStack>
       </Box>
+
+      <Modal isOpen={isOpen} onClose={onClose}>
+        <ModalOverlay />
+
+              </Modal>
     </Box>
   );
 };
-
 export default ProductCard;
