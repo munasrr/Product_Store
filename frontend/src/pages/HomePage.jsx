@@ -2,23 +2,25 @@ import { Container, VStack, Text, SimpleGrid } from '@chakra-ui/react';
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useProductStore } from '../store/product';
-import ProductCard from '../components/ProductCard'
+import ProductCard from '../components/ProductCard';
 
 const HomePage = () => {
-  const { fetchProducts,products} = useProductStore();
+  const { fetchProducts, products } = useProductStore();
+
   useEffect(() => {
     fetchProducts();
   }, [fetchProducts]);
-  console.log("products",products)
+
   return (
     <Container maxW="container.xl" py={12}>
-      <VStack spacing={8}>
+      <VStack spacing={12}>
         <Text
-          fontSize={{ base: '22', sm: '28' }}
-          fontWeight={'bold'}
-          textTransform={'uppercase'}
-          textAlign={'center'}
-          bgGradient={'linear(to-r,cyan.400,blue.600)'}
+          fontSize={{ base: '28px', sm: '34px', md: '40px' }}
+          fontWeight="bold"
+          textTransform="uppercase"
+          textAlign="center"
+          bgGradient="linear(to-r, cyan.400, blue.600)"
+          bgClip="text"
         >
           Current Products
         </Text>
@@ -36,15 +38,16 @@ const HomePage = () => {
             <ProductCard key={product._id} product={product} />
           ))}
         </SimpleGrid>
+
         {products.length === 0 && (
           <Text
-            fontSize={'xl'}
-            textAlign={'center'}
-            fontWeight={'bold'}
+            fontSize="xl"
+            textAlign="center"
+            fontWeight="bold"
             color="gray.500"
           >
-            No products found😓{''}
-            <Link to={'/create'}>
+            No products found 😓{' '}
+            <Link to="/create">
               <Text
                 as="span"
                 color="blue.500"
