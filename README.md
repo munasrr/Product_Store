@@ -35,23 +35,6 @@ CLIENT_URL=http://localhost:5000
 
 pnpm run dev
 
-*Frontend Structure
-Components: Reusable UI components such as product cards, headers, and footers.
-Pages: Main views such as the homepage, product listing, and product details.
-Redux: State management for handling product data and user sessions.
-Contributing
-Feel free to fork the repository and make contributions. To submit a pull request:
 
-Fork the project.
-Create a feature branch (git checkout -b feature/new-feature).
-Commit your changes (git commit -m 'Add a new feature').
-Push to the branch (git push origin feature/new-feature).
-Open a Pull Request.
-
-License
-This project is licensed under the MIT License. See the LICENSE file for more details.
-
-
-Now, all sections are connected without extra spacing. You can copy this directly into your `README.md` file.
 
 
