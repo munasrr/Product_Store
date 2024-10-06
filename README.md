@@ -26,9 +26,6 @@ cd client
 pnpm install
 
 
-3.Set up environment variables: Create a .env file in the root directory for the server with the following:
-MONGO_URI=your_mongodb_connection_string
-CLIENT_URL=http://localhost:5000
 
 
 4.Run the development server:
